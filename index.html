@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Francisco Muñoz Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Playfair+Display:ital,wght@0,400;1,400&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+        }
+
+        h1, .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Ajuste de Grilla: 4 columnas para hacer las fotos más pequeñas */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+            gap: 0.75rem;
+        }
+        @media (min-width: 640px) {
+            .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        @media (min-width: 1024px) {
+            .gallery-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        }
+        @media (min-width: 1440px) {
+            /* 4 columnas reduce el tamaño individual de cada imagen */
+            .gallery-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+        }
+
+        .img-card {
+            position: relative;
+            overflow: hidden;
+            background-color: #f9f9f9;
+            aspect-ratio: 3 / 2;
+        }
+
+        .img-card img {
+            transition: transform 0.8s ease;
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .img-card:hover img {
+            transform: scale(1.04);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: #000;
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .section {
+            display: none;
+            opacity: 0;
+        }
+        .section.active {
+            display: block;
+            animation: fadeIn 0.8s forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.98);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+        }
+    </style>
+</head>
+<body class="text-neutral-900">
+
+    <!-- Navegación -->
+    <nav class="fixed w-full top-0 bg-white/80 backdrop-blur-md z-50 py-8 px-6 md:px-20 flex justify-between items-baseline border-b border-neutral-50">
+        <div>
+            <a href="#" onclick="showSection('portfolio')" class="text-xl md:text-2xl font-serif tracking-tight">Francisco Muñoz Portfolio</a>
+        </div>
+        <div class="flex space-x-6 md:space-x-10 text-[10px] md:text-xs uppercase tracking-[0.2em]">
+            <a href="javascript:void(0)" onclick="showSection('portfolio')" class="nav-link font-medium">Portafolio</a>
+            <a href="javascript:void(0)" onclick="showSection('about')" class="nav-link font-medium">Sobre Mí</a>
+        </div>
+    </nav>
+
+    <!-- Contenido -->
+    <main class="pt-32 pb-20 px-6 md:px-20 max-w-[1600px] mx-auto">
+        
+        <!-- Sección Portafolio -->
+        <section id="portfolio" class="section active">
+            <div class="gallery-grid">
+                
+                <!-- Foto 1 -->
+                <div class="img-card cursor-zoom-in" onclick="openLightbox('https://i.imgur.com/i0dMRnu.jpeg')">
+                    <img src="https://i.imgur.com/i0dMRnu.jpeg" alt="[Interior de metro]">
+                </div>
+
+                <!-- Foto 2 -->
+                <div class="img-card cursor-zoom-in" onclick="openLightbox('https://i.imgur.com/sMm3yQH.jpeg')">
+                    <img src="https://i.imgur.com/sMm3yQH.jpeg" alt="[Escaleras mecánicas]">
+                </div>
+
+                <!-- Foto 3 -->
+                <div class="img-card cursor-zoom-in" onclick="openLightbox('https://i.imgur.com/9ykTktY.jpeg')">
+                    <img src="https://i.imgur.com/9ykTktY.jpeg" alt="[Estación]">
+                </div>
+
+                <!-- Foto 4 -->
+                <div class="img-card cursor-zoom-in" onclick="openLightbox('https://i.imgur.com/uAZiIVb.jpeg')">
+                    <img src="https://i.imgur.com/uAZiIVb.jpeg" alt="[Edificio]">
+                </div>
+
+                <!-- Foto 5 -->
+                <div class="img-card cursor-zoom-in" onclick="openLightbox('https://i.imgur.com/N3DuSYm.jpeg')">
+                    <img src="https://i.imgur.com/N3DuSYm.jpeg" alt="[Fachada]">
+                </div>
+
+                <!-- Foto 6 -->
+                <div class="img-card cursor-zoom-in" onclick="openLightbox('https://i.imgur.com/CqRwMER.jpeg')">
+                    <img src="https://i.imgur.com/CqRwMER.jpeg" alt="[Karting]">
+                </div>
+
+                <!-- Foto 7 -->
+                <div class="img-card cursor-zoom-in" onclick="openLightbox('https://i.imgur.com/VzQVXqO.jpeg')">
+                    <img src="https://i.imgur.com/VzQVXqO.jpeg" alt="[Estructura amarilla]">
+                </div>
+
+                <!-- Foto 8 -->
+                <div class="img-card cursor-zoom-in" onclick="openLightbox('https://i.imgur.com/ZVFfK3M.jpeg')">
+                    <img src="https://i.imgur.com/ZVFfK3M.jpeg" alt="[Dardos]">
+                </div>
+
+                <!-- Foto 9 -->
+                <div class="img-card cursor-zoom-in" onclick="openLightbox('https://i.imgur.com/qd5j2Sq.jpeg')">
+                    <img src="https://i.imgur.com/qd5j2Sq.jpeg" alt="[Mesa de pool]">
+                </div>
+
+            </div>
+            <p class="text-center text-[10px] text-neutral-400 mt-20 tracking-widest uppercase italic">Selecciona una imagen para expandir</p>
+        </section>
+
+        <!-- Sección Sobre Mí -->
+        <section id="about" class="section max-w-5xl mx-auto pt-10">
+            <div class="flex flex-col md:flex-row gap-16 items-start">
+                <div class="w-full md:w-5/12">
+                    <img src="https://i.imgur.com/sMm3yQH.jpeg" alt="[Retrato Francisco]" class="w-full grayscale shadow-sm border border-neutral-100">
+                </div>
+                <div class="w-full md:w-7/12">
+                    <h2 class="text-4xl font-serif mb-8 leading-tight italic text-neutral-800">Capturando lo invisible en lo cotidiano.</h2>
+                    <div class="space-y-6 text-neutral-600 text-lg leading-relaxed font-light">
+                        <p>
+                            Soy Francisco Muñoz, fotógrafo enfocado en la documentación visual urbana y arquitectónica. Mi trabajo explora la relación entre los espacios públicos y la soledad del individuo moderno. 
+                        </p>
+                        <p>
+                            A través de una mirada cinematográfica y el uso de texturas que evocan el film analógico, busco capturar momentos que de otro modo pasarían desapercibidos en el caos de la ciudad.
+                        </p>
+                    </div>
+                    
+                    <div class="mt-12 pt-10 border-t border-neutral-100">
+                        <p class="text-[10px] uppercase tracking-widest text-neutral-400 mb-6">Contacto & Redes</p>
+                        <div class="flex flex-col space-y-3 font-light">
+                            <a href="mailto:hola@franciscomunoz.com" class="hover:text-neutral-400 transition underline underline-offset-4 decoration-neutral-200">hola@franciscomunoz.com</a>
+                            <a href="#" class="hover:text-neutral-400 transition">Instagram @fmunoz_photo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Visor Fullscreen -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <button class="absolute top-10 right-10 text-3xl font-light hover:opacity-40 transition text-neutral-500">&times;</button>
+        <img id="lightbox-img" src="" class="max-h-[85vh] max-w-[90vw] object-contain shadow-2xl">
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function openLightbox(src) {
+            const lb = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            img.src = src;
+            lb.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+    </script>
+</body>
+</html>
